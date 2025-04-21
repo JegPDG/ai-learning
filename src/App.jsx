@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from 'react'
 import HomePage from './components/homepage/HomePage'
 import NavBar from './components/navbar/NavBar'
 import './app.css';
+import { assets } from './assets/assets';
 import {pdfjs, Document, Page} from 'react-pdf';
 import pdfToText from 'react-pdftotext'
 import { getResult } from './aimlapi';
@@ -80,14 +81,13 @@ const handleFlash = async () => {
   setFlashItem(parsedData)
 }
 
-
   return (
     <>
       <div className="pop-ups-cont">
       { pdfReceive && 
         <div className="pop-up">
           <div className="pop-up-message">
-            <img src="/check-circle.svg" alt="" />
+            <img src={assets.check} alt="" />
             <p>           
               PDF RECEIVED
             </p>

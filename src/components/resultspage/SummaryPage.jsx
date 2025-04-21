@@ -15,16 +15,15 @@ const SummaryPage = (props) => {
               {loading ? 'Summarizing...' : 'Summarize'}
           </button>
         </div>
-        <div className="summary-text-cont-1">
           {summary && (
-            <>
-              <div className="summary-text-2">
-                {text}
-              </div>
-            </>
+            <div className="summary-text-cont-1">
+                <>
+                  <div className="summary-text-2">
+                    {text}
+                  </div>
+                </>
+            </div>
           ) }
-          
-        </div>
       </div>
     
     </>
