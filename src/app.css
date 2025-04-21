@@ -1,0 +1,39 @@
+.whole-screen{
+  height: 100vh;
+}
+
+.not-pop-up{
+  filter: blur(2px);
+}
+
+.pop-ups-cont{
+  position: relative;
+}
+
+.pop-up{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.pop-up-message{
+  background-color: white;
+  height: 200px;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 7px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+}
+
+.pop-up-message img{
+  width: 80px;
+}

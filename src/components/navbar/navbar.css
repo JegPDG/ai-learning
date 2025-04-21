@@ -1,0 +1,27 @@
+.main-nav-cont{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 100vw; */
+  gap: 100px;
+  background-color: #926290;
+  padding: 10px;
+}
+
+.circle{
+  width: 40px;
+  height: 40px;
+  background-color: #4A2847;
+  border-radius: 50%;
+
+}
+
+.links-cont{
+  display: flex;
+  gap: 50px;
+  color: white;
+}
+
+.links-cont p{
+  cursor: pointer;
+}
