@@ -23,7 +23,7 @@ function App() {
 
 
   // AI prompts
-  const sumprompt ='Summarize the following text in a clear and concise manner, highlighting the most important points, key ideas, and essential details. Keep the language simple and easy to understand.'
+  const sumprompt ='Summarize the following text in a clear and concise manner only 3 paragraphs, highlighting the most important points, key ideas, and essential details. Keep the language simple and easy to understand.'
 
   const quizprompt = "Create a 10-question multiple choice quiz based on the following text. Each question should include four answer options and the correct answer. Return the quiz in JSON format with this structure:\n\n[\n  {\n    \"question\": \"What is the capital of France?\",\n    \"options\": [\"Berlin\", \"London\", \"Paris\", \"Madrid\"],\n    \"answer\": \"Paris\"\n  }\n]\n\nHere is the text:\n\n[Insert your text here]"
 
@@ -56,6 +56,7 @@ function App() {
   }
 
   const handleQuiz = async () => {
+    setLaoding(true)
     const result = await getResult(text, quizprompt)
     
     let parsedData;
@@ -66,11 +67,12 @@ function App() {
       console.error("Failed to parse JSON", error)
     }
     setQuiz(parsedData)
+    setLaoding(false)
 }
 
 const handleFlash = async () => {
   const result = await getResult(text, flCardPrompt)
-  
+  setSummary(result)
   let parsedData;
   try {
     parsedData = JSON.parse(result)
@@ -79,6 +81,7 @@ const handleFlash = async () => {
     console.error("Failed to parse JSON", error)
   }
   setFlashItem(parsedData)
+  setLaoding(false)
 }
 
   return (

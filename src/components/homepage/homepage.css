@@ -11,7 +11,26 @@
 .intro-text{
   font-size: 64px;
   width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   text-align: center;
+  text-wrap: nowrap ;
+  position: relative;
+  color: #4A2847;
+}
+
+.mascot{
+  position: absolute;
+  max-width: 400px;
+  top: 150px;
+  left: -200px;
+  z-index: -1;
+}
+
+.intro-text :nth-child(2){
+  font-size: 40px;
 }
 
 .input-container{
@@ -33,5 +52,9 @@
   margin-left: 16px;
 }
 
-
+.pdf-input-cont{
+  background-color: white;
+  padding: 20px;
+  border-radius: 7px;
+}
 

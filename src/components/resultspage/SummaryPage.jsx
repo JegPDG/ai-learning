@@ -1,6 +1,6 @@
 import React from 'react'
 import './summary.css'
-
+import { assets } from '../../assets/assets'
 
 const SummaryPage = (props) => {
   const {text, handleSummarize, loading, summary} =props
@@ -15,7 +15,7 @@ const SummaryPage = (props) => {
               {loading ? 'Summarizing...' : 'Summarize'}
           </button>
         </div>
-          {summary && (
+        {summary.length > 0 ? (
             <div className="summary-text-cont-1">
                 <>
                   <div className="summary-text-2">
@@ -23,7 +23,19 @@ const SummaryPage = (props) => {
                   </div>
                 </>
             </div>
-          ) }
+        ) : (
+            <>
+              <div className='empty-cont'>
+                <div className={loading ? 'loader' : ''}>
+                </div>
+
+                <div className="empty-state">
+                  <img src={assets.logo} alt="" />
+                  <p>CramPal</p>
+                </div>
+              </div>
+            </>
+        )}
       </div>
     
     </>

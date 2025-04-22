@@ -14,6 +14,7 @@
   flex-direction: row;
   margin-top: 20px;
   background-color: #4A2847;
+  box-sizing: border-box;
   color: white;
   padding: 10px 25px;
   border-radius: 7px;
@@ -22,7 +23,19 @@
 
 .result-nav p{
   cursor: pointer;
-
+  background-color: #926290;
+  padding: 5px 20px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  border: 3px solid #4A2847;
+  box-shadow: 0.1em 0.1em;
+}.result-nav p:hover{
+  transform: translate(-0.05em, -0.05em);
+  box-shadow: 0.15em 0.15em;
+}
+.result-nav p:active{
+  transform: translate(0.05em, 0.05em);
+  box-shadow: 0.05em 0.05em;
 }
 
 .flash-one-card{
@@ -104,4 +117,54 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.empty-state img{
+  width: 400px;
+}
+.empty-state p{
+  font-size: 120px;
+  position: absolute;
+  bottom: 0;
+  color: #F3DFCD;
+  -webkit-text-stroke: 3px #4A2847;
+}
+
+.empty-cont{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  --s: 20px;
+  
+  --_d: calc(0.353*var(--s));
+  width: calc(var(--s) + var(--_d));
+  aspect-ratio: 1;
+  display: grid;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  grid-area: 1/1;
+  clip-path: polygon(var(--_d) 0,100% 0,100% calc(100% - var(--_d)),calc(100% - var(--_d)) 100%,0 100%,0 var(--_d));
+  background:
+    conic-gradient(from -90deg at calc(100% - var(--_d)) var(--_d),
+    #F3DFCD 135deg,#4A2847 0 270deg,#926290 0);
+  animation: l6 2s infinite;
+}
+.loader:after {
+  animation-delay:-1s;
+}
+@keyframes l6{
+  0%  {transform:translate(0,0)}
+  25% {transform:translate(30px,0)}
+  50% {transform:translate(30px,30px)}
+  75% {transform:translate(0,30px)}
+  100%{transform:translate(0,0)}
 }

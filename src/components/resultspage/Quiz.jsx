@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import './quiz.css'
-
+import { assets } from '../../assets/assets'
 
 const Quiz = (props) => {
-const {quizItems, handleQuiz, quiz} = props
+const {quizItems, handleQuiz, quiz, loading} = props
 const [userAnswer, setUserAnswers] = useState({})
 const [submitted, setSubmitted] = useState(false)
 const [score, setScore] = useState(null)
@@ -44,7 +44,7 @@ const getResult = (index, correctAnswer) => {
   if (userAnswer[index] === correctAnswer){
       verdict = 'Correct'
   } else {
-      verdict = 'Incorrect'
+      verdict = `Incorrect        Answer: ${correctAnswer}`
   }
   return verdict
 }
@@ -90,10 +90,17 @@ const getResult = (index, correctAnswer) => {
         </form>
 
       ) : (
-        <div>
-     
-        </div>
+        <>
+          <div className='empty-cont'>
+            <div className={loading ? 'loader' : ''}>
+            </div>
 
+            <div className="empty-state">
+              <img src={assets.logo} alt="" />
+              <p>CramPal</p>
+            </div>
+          </div>
+        </>
       )}
         
     </>

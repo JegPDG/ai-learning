@@ -3,6 +3,7 @@ import './resultspage.css'
 import SummaryPage from './SummaryPage';
 import FlashCard from './FlashCard';
 import Quiz from './Quiz';
+import { assets } from '../../assets/assets';
 
 const ResultsPage = (props) => {
   const {text, handleSummarize, loading, summary, handleQuiz, quiz, flashItem, handleFlash} = props
@@ -156,9 +157,17 @@ const ResultsPage = (props) => {
               </div>
             </>
             ) : (
-            <div className="empty-state">
-              <p>No flashcards available</p>
-            </div>
+              <>
+                <div className='empty-cont'>
+                  <div className={loading ? 'loader' : ''}>
+                  </div>
+
+                  <div className="empty-state">
+                    <img src={assets.logo} alt="" />
+                    <p>CramPal</p>
+                  </div>
+                </div>
+              </>
            )
           }
           
@@ -169,7 +178,12 @@ const ResultsPage = (props) => {
       {resultPages === 3 && 
       <>
         <div className="quiz-cont">
-          <Quiz quizItems ={quizitems} handleQuiz={handleQuiz} quiz={quiz}/>
+          <Quiz 
+            quizItems ={quizitems} 
+            handleQuiz={handleQuiz} 
+            quiz={quiz}
+            loading = {loading}
+            />
         </div>
       </>
       }

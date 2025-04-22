@@ -1,5 +1,6 @@
 .whole-screen{
   height: 100vh;
+  max-width: 800px;
 }
 
 .not-pop-up{

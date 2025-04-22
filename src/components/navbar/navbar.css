@@ -8,12 +8,37 @@
   padding: 10px;
 }
 
+.max-width{
+  max-width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap:  100px;
+}
+
+.logo-text{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-weight: bold;
+  color: white;
+  font-size: 24px;
+}
+
 .circle{
   width: 40px;
   height: 40px;
-  background-color: #4A2847;
+  background-color: #F3DFCD;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+}
+
+.circle img{
+  object-fit: cover;
+  width: 35px;
 }
 
 .links-cont{
