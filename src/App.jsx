@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import HomePage from './components/homepage/HomePage'
 import NavBar from './components/navbar/NavBar'
 import './app.css';
@@ -23,7 +23,7 @@ function App() {
 
 
   // AI prompts
-  const sumprompt ='Summarize the following text in a clear and concise manner only 3 paragraphs, highlighting the most important points, key ideas, and essential details. Keep the language simple and easy to understand.'
+  const sumprompt ='Summarize the following text in a clear and concise manner only 3 paragraphs, highlighting the most important points, key ideas, and essential details. Keep the language simple and easy to understand. Enclose each paragraph with HTML paragraph tags'
 
   const quizprompt = "Create a 10-question multiple choice quiz based on the following text. Each question should include four answer options and the correct answer. Return the quiz in JSON format with this structure:\n\n[\n  {\n    \"question\": \"What is the capital of France?\",\n    \"options\": [\"Berlin\", \"London\", \"Paris\", \"Madrid\"],\n    \"answer\": \"Paris\"\n  }\n]\n\nHere is the text:\n\n[Insert your text here]"
 
@@ -48,13 +48,27 @@ function App() {
   }
 
   // Function for Handdling API request
+
+  //Summary handling
+  useEffect(() => {
+    const savedSummary = localStorage.getItem('summary')
+    if (savedSummary) {
+      setSummary(savedSummary)
+    }
+  }, [summary])
+
   const handleSummarize = async () => {
+      localStorage.removeItem('summary')
+      setSummary('')
       setLaoding(true)
       const result = await getResult(text, sumprompt)
       setSummary(result)
+      localStorage.setItem('summary', result)
       setLaoding(false)
   }
 
+
+// Quiz Handling
   const handleQuiz = async () => {
     setLaoding(true)
     const result = await getResult(text, quizprompt)
@@ -70,6 +84,7 @@ function App() {
     setLaoding(false)
 }
 
+// Flash Card Handling
 const handleFlash = async () => {
   const result = await getResult(text, flCardPrompt)
   setSummary(result)
