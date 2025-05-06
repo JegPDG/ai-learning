@@ -32,10 +32,30 @@ function App() {
   const apiKey = import.meta.env.VITE_API_KEY;
 
   // Extracting PDF tp text
+  useEffect(() => {
+    const savedText = localStorage.getItem('text')
+    if (savedText){
+      setText(savedText)
+    }
+  }, [text])
+
   const extractText = (event) => {
+
     const file = event.target.files[0];
+
+    if(file.type !== 'application/pdf'){
+      alert('Please choose a PDF file')
+      return
+    }
+
+    console.log(file.type)
+
+    localStorage.removeItem('text')
     pdfToText(file)
-      .then((extractText) => setText(extractText))
+      .then((extractText) => {
+        setText(extractText);
+        localStorage.setItem('text',JSON.stringify(extractText))
+      })
       .catch((error) => console.error('Failed to extract PDF', error));
 
       setPdfreceive(true)
@@ -45,6 +65,11 @@ function App() {
           console.log('just removed bukli')
           setnavbarelm(2)
       }, 2000);
+
+      localStorage.removeItem('summary')
+      localStorage.removeItem('quiz')
+      localStorage.removeItem('flashcard')
+
   }
 
   // Function for Handdling API request
@@ -60,6 +85,7 @@ function App() {
   const handleSummarize = async () => {
       localStorage.removeItem('summary')
       setSummary('')
+
       setLaoding(true)
       const result = await getResult(text, sumprompt)
       setSummary(result)
@@ -69,7 +95,19 @@ function App() {
 
 
 // Quiz Handling
+  useEffect(() => {
+    const savedQuiz = JSON.parse(localStorage.getItem('quiz'))
+    if (savedQuiz){
+      setQuiz(savedQuiz)
+    }
+  }, [])
+
+
   const handleQuiz = async () => {
+
+    localStorage.removeItem('quiz')
+    setQuiz('')
+
     setLaoding(true)
     const result = await getResult(text, quizprompt)
     
@@ -81,13 +119,25 @@ function App() {
       console.error("Failed to parse JSON", error)
     }
     setQuiz(parsedData)
+    localStorage.setItem('quiz', JSON.stringify(parsedData))
     setLaoding(false)
 }
 
 // Flash Card Handling
+useEffect(() => {
+  const savedFlash = JSON.parse(localStorage.getItem('flashcard'))
+  if (savedFlash){
+    setFlashItem(savedFlash)
+  }
+}, [])
+
+
 const handleFlash = async () => {
+  localStorage.removeItem('flashcard')
+  setFlashItem('')
+
   const result = await getResult(text, flCardPrompt)
-  setSummary(result)
+
   let parsedData;
   try {
     parsedData = JSON.parse(result)
@@ -96,6 +146,7 @@ const handleFlash = async () => {
     console.error("Failed to parse JSON", error)
   }
   setFlashItem(parsedData)
+  localStorage.setItem('flashcard', JSON.stringify(parsedData))
   setLaoding(false)
 }
 

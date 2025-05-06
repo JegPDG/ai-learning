@@ -59,7 +59,7 @@ const getResult = (index, correctAnswer) => {
       </div>
       {quiz.length > 0 ? (
         <form onSubmit={handleSubmit} className="quiz-container">
-          { quiz.map ((item, index) => 
+          { quiz.map((item, index) => 
             <fieldset key={index}>
               <legend>{index + 1 + '.'} {item.question}</legend>
                 {item.options.map((option, optindex) => (
