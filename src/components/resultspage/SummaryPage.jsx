@@ -5,6 +5,7 @@ import { assets } from '../../assets/assets'
 const SummaryPage = (props) => {
   const {text, handleSummarize, loading, summary} =props
 
+  const paragraphs = summary.split('**')
 
   return (
     <>
@@ -22,7 +23,9 @@ const SummaryPage = (props) => {
             <div className="summary-text-cont-1">
                 <>
                   <div className="summary-text-2">
-                    {summary}
+                    {paragraphs.map((para, index) => (
+                      <p key={index}>{para.trim()}   </p>
+                    ))}
                   </div>
                 </>
             </div>

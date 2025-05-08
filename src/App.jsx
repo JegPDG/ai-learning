@@ -80,7 +80,7 @@ function App() {
     if (savedSummary) {
       setSummary(savedSummary)
     }
-  }, [summary])
+  }, [])
 
   const handleSummarize = async () => {
       localStorage.removeItem('summary')
