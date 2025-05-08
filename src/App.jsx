@@ -23,7 +23,7 @@ function App() {
 
 
   // AI prompts
-  const sumprompt ='Summarize the following text in a clear and concise manner only 3 paragraphs, highlighting the most important points, key ideas, and essential details. Keep the language simple and easy to understand. Enclose each paragraph with HTML paragraph tags'
+  const sumprompt ='Summarize the following text in a clear and concise manner only 3 paragraphs, highlighting the most important points, key ideas, and essential details. Keep the language simple and easy to understand. Enclose each paragraph double asterisk for splitting'
 
   const quizprompt = "Create a 10-question multiple choice quiz based on the following text. Each question should include four answer options and the correct answer. Return the quiz in JSON format with this structure:\n\n[\n  {\n    \"question\": \"What is the capital of France?\",\n    \"options\": [\"Berlin\", \"London\", \"Paris\", \"Madrid\"],\n    \"answer\": \"Paris\"\n  }\n]\n\nHere is the text:\n\n[Insert your text here]"
 
